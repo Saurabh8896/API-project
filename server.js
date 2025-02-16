@@ -1,7 +1,9 @@
 import express from 'express';
 import Productrouter from './src/features/product/product.routes.js';
+import bodyParser from 'body-parser';
 const server = express();
 
+server.use(bodyParser.json())
 
 // for all requests related to product, redirect to product routes
 
