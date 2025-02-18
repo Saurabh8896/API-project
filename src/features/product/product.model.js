@@ -1,12 +1,12 @@
 export default class ProductModel {
   
-    constructor(id, name, desc, imageUrl, categpry, price, sizes) {
+    constructor(id, name, desc, price, imageUrl, category, sizes) {
     this.id = id;
     this.name = name;
     this.desc = desc;
-    this.imageUrl = imageUrl;
-    this.categpry = categpry;
     this.price = price;
+    this.imageUrl = imageUrl;
+    this.category = category;
     this.sizes = sizes;
   }
 
@@ -14,6 +14,28 @@ export default class ProductModel {
     return products;
   }
 
+  static addProduct(product){
+    product.id = products.length+1;
+    products.push(product)
+    return product;
+  }
+
+  static get(id){
+    const product = products.find(i=>i.id==id)
+    return product
+  }
+
+  static filter(minPrice, maxPrice, category){
+    const result = products.filter((p)=>{
+      return(
+        (!minPrice || p.price >= minPrice)&& 
+      (!maxPrice || p.price <= maxPrice) && 
+      (!category ||p.category == category)
+    )
+    })
+    return result
+
+  }
 
 }
 
