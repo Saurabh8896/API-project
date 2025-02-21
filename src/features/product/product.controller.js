@@ -21,9 +21,6 @@ export default class ProductController{
         res.status(201).send(createdRecord);
     }
 
-    rateProduct(req,res){
-
-    }
     getOneProduct(req,res){
         const id = req.params.id
         const product = ProductModel.get(id)
@@ -39,8 +36,26 @@ export default class ProductController{
         const minPrice = req.query.minPrice
         const maxPrice = req.query.maxPrice
         const category = req.query.category
-        // console.log(`${minPrice}, ${maxPrice}, ${category}`)
-       const result = ProductModel.filter(minPrice,maxPrice,category)
+        const result = ProductModel.filter(minPrice,maxPrice,category)
         res.status(200).send(result)
     }
+    productrating(req,res){
+
+        const {userId, productId, rating} = req.query
+
+       const result = ProductModel.productrating(userId,productId,rating)
+            const product = ProductModel.get(result)
+       if(result){
+        if(product){
+        res.status(200).json({Item:product})
+        }else{
+        res.status(200).json({Item:result})
+        }
+
+       }else{
+        res.status(400).json({Status:"failed"})
+       }
+    }
+
+    
 }

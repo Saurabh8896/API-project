@@ -1,5 +1,6 @@
 export default class UserModel {
-  constructor(name, email, password, type) {
+  constructor(id,name, email, password, type) {
+    this.id= id
     this.name = name;
     this.email = email;
     this.password = password;
@@ -24,10 +25,19 @@ export default class UserModel {
 
 let users = [
   {
+    id:1,
     name: "seller user",
     email: "seller@gmail.com",
     password: "12345",
     type: "seller",
-  }
+  },
+  {
+    id:2,
+    name: "Customer user",
+    email: "Customer@gmail.com",
+    password: "12345",
+    type: "Customer",
+  },
+  
 ];
   

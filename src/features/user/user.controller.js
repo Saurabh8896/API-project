@@ -12,7 +12,8 @@ export default class UserController {
         "quJEmC0FIwT94LgKvNcmjWmsik8hiUnx",
         { expiresIn: "1h" }
       );
-      res.status(200).send(token);
+      res.cookie('jwtToken',token,{httpOnly:true})
+      res.status(200).json({user:user,token:token});
     }
   }
 

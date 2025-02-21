@@ -7,6 +7,7 @@ const Productrouter = express.Router()
 const productController = new ProductController()
 
 Productrouter.get('/filter',productController.filterProducts)
+Productrouter.post('/rating',productController.productrating)
 Productrouter.get('/',productController.getAllProducts)
 Productrouter.post('/',upload.single('imageUrl'),productController.addProduct)
 Productrouter.get('/:id',productController.getOneProduct)

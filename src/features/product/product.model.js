@@ -1,3 +1,4 @@
+import UserModel from "../user/user.model.js";
 export default class ProductModel {
   
     constructor(id, name, desc, price, imageUrl, category, sizes) {
@@ -34,6 +35,46 @@ export default class ProductModel {
     )
     })
     return result
+
+  }
+
+  static productrating(userId,productId,rating){
+      const user = UserModel.getall().find((u)=>u.id==userId)
+      const product = products.find((p)=>p.id==productId)
+      // console.log(productId)
+      // console.log(product)
+      // console.log(user)
+      if(!user){
+        return "User not found"
+      }
+      if(product<=0){
+        return "product not found"
+      }
+      if(rating<0 || rating>5){
+          return "The rating should lie between 0 to 5"
+      }
+
+      if(!product.rating){
+        console.log("I am new")
+        product.rating = []
+        product.rating.push({UserId:userId,
+        Rating:rating})
+        return productId
+      }else{
+        console.log("i am exiting one")
+       const existingproduct = product.rating.findIndex((u)=>u.UserId==userId)
+        if(existingproduct>=0){
+           product.rating[existingproduct]= { UserId:userId,
+          Rating:rating } 
+        return productId;
+        }else{
+          console.log("i am not rated")
+           product.rating.push({UserId:userId,
+           Rating:rating})
+        return productId
+        }
+      }
+
 
   }
 
