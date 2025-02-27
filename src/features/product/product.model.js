@@ -55,20 +55,17 @@ export default class ProductModel {
       }
 
       if(!product.rating){
-        console.log("I am new")
         product.rating = []
         product.rating.push({UserId:userId,
         Rating:rating})
         return productId
       }else{
-        console.log("i am exiting one")
        const existingproduct = product.rating.findIndex((u)=>u.UserId==userId)
         if(existingproduct>=0){
            product.rating[existingproduct]= { UserId:userId,
           Rating:rating } 
         return productId;
         }else{
-          console.log("i am not rated")
            product.rating.push({UserId:userId,
            Rating:rating})
         return productId
